@@ -62,13 +62,13 @@
 #pragma config FWDTEN = OFF    // Watchdog Timer Enable bit->Watchdog timer enabled/disabled by user software
 
 // FOSC
-#pragma config POSCMD = XT    // Primary Oscillator Mode Select bits->XT Crystal Oscillator Mode
+#pragma config POSCMD = HS    // Primary Oscillator Mode Select bits->HS Crystal Oscillator Mode
 #pragma config OSCIOFNC = OFF    // OSC2 Pin Function bit->OSC2 is clock output
 #pragma config IOL1WAY = ON    // Peripheral pin select configuration->Allow only one reconfiguration
 #pragma config FCKSM = CSDCMD    // Clock Switching Mode bits->Both Clock switching and Fail-safe Clock Monitor are disabled
 
 // FOSCSEL
-#pragma config FNOSC = PRI    // Oscillator Source Selection->Primary Oscillator (XT, HS, EC)
+#pragma config FNOSC = PRIPLL    // Oscillator Source Selection->Primary Oscillator with PLL module (XT + PLL, HS + PLL, EC + PLL)
 #pragma config PWMLOCK = ON    // PWM Lock Enable bit->Certain PWM registers may only be written after key sequence
 #pragma config IESO = ON    // Two-speed Oscillator Start-up Enable bit->Start up device with FRC, then switch to user-selected oscillator source
 
@@ -97,16 +97,16 @@ void SYSTEM_Initialize(void)
 
 void OSCILLATOR_Initialize(void)
 {
-    // CF no clock failure; NOSC PRI; CLKLOCK unlocked; OSWEN Switch is Complete; 
-    __builtin_write_OSCCONL((uint8_t) (0x0200 & 0x00FF));
-    // FRCDIV FRC/2; PLLPRE 2; DOZE 1:8; PLLPOST 1:2; DOZEN disabled; ROI disabled; 
-    CLKDIV = 0x3100;
+    // CF no clock failure; NOSC PRIPLL; CLKLOCK unlocked; OSWEN Switch is Complete; 
+    __builtin_write_OSCCONL((uint8_t) (0x0300 & 0x00FF));
+    // FRCDIV FRC/2; PLLPRE 23; DOZE 1:8; PLLPOST 1:2; DOZEN disabled; ROI disabled; 
+    CLKDIV = 0x3115;
     // TUN Center frequency; 
     OSCTUN = 0x0000;
     // ROON disabled; ROSEL disabled; RODIV Base clock value; ROSSLP disabled; 
     REFOCON = 0x0000;
-    // PLLDIV 50; 
-    PLLFBD = 0x0032;
+    // PLLDIV 338; 
+    PLLFBD = 0x0152;
     // RND disabled; SATB disabled; SATA disabled; ACCSAT disabled; 
 	CORCONbits.RND = 0;
 	CORCONbits.SATB = 0;

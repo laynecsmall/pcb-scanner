@@ -48,7 +48,8 @@
 #include <xc.h>
 #include <libpic30.h>
 
-#define FCY 8000000
+#define FCY 92236800UL
+#define BAUD 9600UL
 #define delay_us(x) __delay32(((x*FCY)/1000000UL)) // delays x us
 #define delay_ms(x) __delay32(((x*FCY)/1000UL))  // delays x ms
 
@@ -60,18 +61,20 @@ int main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
+    
+    U1BRG = FCY/(4*BAUD)-1;
 
     while (1)
     {
         // Add your application code
         PORTBbits.RB9 = 1;
-     	__delay32(8000000UL);
+     	__delay32(FCY);
 		printf("foobar\r\n");
         
         PORTBbits.RB9 = 0;
-        __delay32(8000000UL);
+        __delay32(FCY);
         printf("map\r\n");
-        delay_ms(500L);
+
     }
 
     return -1;

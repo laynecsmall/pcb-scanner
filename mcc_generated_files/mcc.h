@@ -53,7 +53,7 @@
 #include "interrupt_manager.h"
 #include "uart1.h"
 
-#define _XTAL_FREQ  8000000UL
+#define _XTAL_FREQ  68000000UL
 
 /**
   Section: Type defines
