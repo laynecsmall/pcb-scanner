@@ -1,26 +1,26 @@
 /**
-  System Interrupts Generated Driver File 
+  UART2 Generated Driver File
 
-  @Company:
+  @Company
     Microchip Technology Inc.
 
-  @File Name:
-    interrupt_manager.h
+  @File Name
+    uart2.c
 
-  @Summary:
-    This is the generated driver implementation file for setting up the
-    interrupts using MPLAB(c) Code Configurator
+  @Summary
+    This is the generated driver implementation file for the UART2 driver using MPLAB(c) Code Configurator
 
-  @Description:
-    This source file provides implementations for MPLAB(c) Code Configurator interrupts.
-    Generation Information : 
+  @Description
+    This header file provides implementations for driver APIs for UART2.
+    Generation Information :
         Product Revision  :  MPLAB(c) Code Configurator - 3.16
         Device            :  PIC24EP128MC206
-        Version           :  1.01
+        Driver Version    :  2.00
     The generated drivers are tested against the following:
         Compiler          :  XC16 1.26
         MPLAB             :  MPLAB X 3.20
 */
+
 /*
     (c) 2016 Microchip Technology Inc. and its subsidiaries. You may use this
     software and any derivatives exclusively with Microchip products.
@@ -44,23 +44,64 @@
 */
 
 /**
-    Section: Includes
+  Section: Included Files
 */
-#include <xc.h>
+#include "uart2.h"
 
 /**
-    void INTERRUPT_Initialize (void)
+  Section: UART2 APIs
 */
-void INTERRUPT_Initialize (void)
-{
-    //    UERI: UART1 Error
-    //    Priority: 1
-        IPC16bits.U1EIP = 1;
-    //    UTXI: UART1 Transmitter
-    //    Priority: 1
-        IPC3bits.U1TXIP = 1;
-    //    URXI: UART1 Receiver
-    //    Priority: 1
-        IPC2bits.U1RXIP = 1;
 
+void UART2_Initialize(void)
+{
+    // Set the UART2 module to the options selected in the user interface.
+
+    // STSEL 1; IREN disabled; PDSEL 8N; UARTEN enabled; RTSMD disabled; USIDL disabled; WAKE disabled; ABAUD enabled; LPBACK disabled; BRGH enabled; URXINV disabled; UEN TX_RX; 
+    U2MODE = 0x8028;
+
+    // OERR NO_ERROR_cleared; URXISEL RX_ONE_CHAR; UTXBRK COMPLETED; UTXEN disabled; ADDEN disabled; UTXISEL0 TX_ONE_CHAR; UTXINV disabled; 
+    U2STA = 0x0000;
+
+    // BaudRate = 9600; Frequency = 34000000 Hz; BRG 884; 
+    U2BRG = 0x0374;
+
+    U2STAbits.UTXEN = 1;
 }
+
+
+uint8_t UART2_Read(void)
+{
+    while(!(U2STAbits.URXDA == 1))
+    {
+        
+    }
+
+    if ((U2STAbits.OERR == 1))
+    {
+        U2STAbits.OERR = 0;
+    }
+
+    
+
+    return U2RXREG;
+}
+
+void UART2_Write(uint8_t txData)
+{
+    while(U2STAbits.UTXBF == 1)
+    {
+        
+    }
+
+    U2TXREG = txData;    // Write the data byte to the USART.
+}
+
+UART2_STATUS UART2_StatusGet (void)
+{
+    return U2STA;
+}
+
+
+/**
+  End of File
+*/

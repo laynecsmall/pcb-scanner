@@ -48,12 +48,14 @@
 #include <xc.h>
 #include <libpic30.h>
 
+#include "scanner_uart.h"
+
 #define FCY 92236800UL
 #define BAUD 9600UL
 #define delay_us(x) __delay32(((x*FCY)/1000000UL)) // delays x us
 #define delay_ms(x) __delay32(((x*FCY)/1000UL))  // delays x ms
 
-
+char char_buf[30];
 /*
                          Main application
  */
@@ -68,13 +70,18 @@ int main(void)
     {
         // Add your application code
         PORTBbits.RB9 = 1;
-     	__delay32(FCY);
-		printf("foobar\r\n");
-        
+        //UART1_WriteBuffer("Reading:\r\n",7U);
+        //__delay32(FCY*0.1);
+        PORTAbits.RA0 = 0;
+        PORTBbits.RB4 = 0;
+        uint16_t adc = SPI2_Exchange16bit( SPI2_DUMMY_DATA );
+        PORTBbits.RB4 = 1;
+        PORTAbits.RA0 = 1;
+        sprintf(char_buf, "Read: %d\r\n", adc);
+        UART1_WriteBuffer(char_buf,sizeof(char_buf)+2);
+        __delay32(FCY*0.1);
+                      
         PORTBbits.RB9 = 0;
-        __delay32(FCY);
-        printf("map\r\n");
-
     }
 
     return -1;
