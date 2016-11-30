@@ -50,10 +50,13 @@
 
 #include "scanner_uart.h"
 
-#define FCY 92236800UL
-#define BAUD 9600UL
+#define FCY 41856001UL
+#define BAUD 19200UL
 #define delay_us(x) __delay32(((x*FCY)/1000000UL)) // delays x us
 #define delay_ms(x) __delay32(((x*FCY)/1000UL))  // delays x ms
+
+uint16_t adc = 0;
+uint8_t ret = 0;
 
 char char_buf[30];
 /*
@@ -63,25 +66,32 @@ int main(void)
 {
     // initialize the device
     SYSTEM_Initialize();
-    
+    TRISBbits.TRISB9 = 0; //need to set RB9 as gpio, not included in pin mgr
     U1BRG = FCY/(4*BAUD)-1;
-
+    //U1BRG = 2401; //9600
+    //U1BRG = 545;  //19200
+    
     while (1)
     {
         // Add your application code
         PORTBbits.RB9 = 1;
+        LATBbits.LATB9 = 1;
         //UART1_WriteBuffer("Reading:\r\n",7U);
         //__delay32(FCY*0.1);
-        PORTAbits.RA0 = 0;
-        PORTBbits.RB4 = 0;
+        
+        PORTBbits.RB4 = 0; //toggle chip select. investigate framed mode later
         uint16_t adc = SPI2_Exchange16bit( SPI2_DUMMY_DATA );
         PORTBbits.RB4 = 1;
-        PORTAbits.RA0 = 1;
-        sprintf(char_buf, "Read: %d\r\n", adc);
-        UART1_WriteBuffer(char_buf,sizeof(char_buf)+2);
-        __delay32(FCY*0.1);
+       
+        sprintf(char_buf, "%u\n", adc);
+        //sprintf(char_buf, "%u\n", U1BRG);
+        ret = printf(char_buf,sizeof(char_buf));
+        
+        __delay32(FCY*1);
                       
         PORTBbits.RB9 = 0;
+        LATBbits.LATB9 = 0;
+        __delay32(FCY*1);
     }
 
     return -1;
