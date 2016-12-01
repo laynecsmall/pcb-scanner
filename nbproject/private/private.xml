@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Layne/Dropbox/work/code/scanner-board.X/mcc_generated_files/uart1.c</file>
+            <file>file:/C:/Users/Layne/Dropbox/work/code/scanner-board.X/Makefile</file>
             <file>file:/C:/Users/Layne/Dropbox/work/code/scanner-board.X/main.c</file>
             <file>file:/C:/Users/Layne/Dropbox/work/code/scanner-board.X/mcc_generated_files/pin_manager.c</file>
-            <file>file:/C:/Users/Layne/Dropbox/work/code/scanner-board.X/mcc_generated_files/mcc.c</file>
+            <file>file:/C:/Users/Layne/Dropbox/work/code/scanner-board.X/mux.c</file>
+            <file>file:/C:/Users/Layne/Dropbox/work/code/scanner-board.X/mux.h</file>
+            <file>file:/C:/Users/Layne/Dropbox/work/code/scanner-board.X/main.h</file>
         </group>
     </open-files>
 </project-private>
