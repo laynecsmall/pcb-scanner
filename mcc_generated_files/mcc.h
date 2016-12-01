@@ -50,6 +50,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "spi2.h"
+#include "uart2.h"
 #include "traps.h"
 #include "interrupt_manager.h"
 #include "uart1.h"

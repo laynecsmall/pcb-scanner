@@ -34,6 +34,7 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdio.h>
 #include <libpic30.h>
+#include <stdint.h>
 
 #define FCY 41856001UL
 #define BAUD 19200UL
@@ -41,6 +42,8 @@
 #define delay_ms(x) __delay32(((x*FCY)/1000UL))  // delays x ms
 #define setBit(reg, bit, val)    reg = val ? reg | (1 << bit) : reg & ~(1 << bit);
 #define getBit(a,b) ((a) & (1<<(b)))
+
+
 
 #endif	/* MAIN */
 

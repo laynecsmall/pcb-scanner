@@ -37,7 +37,7 @@ void select_mux_line(uint8_t in_pin, uint8_t out_pin){
    
     //bit lookup tables
     int port_b_out_map[4] = {8, 7, 5, 6};
-    int in_map[4] = {3, 2,7,8};
+    int in_map[4]         = {3, 2,7,8};
     
     //get current port state
     long int b_temp = PORTB;

@@ -1,17 +1,17 @@
 /**
-  UART1 Generated Driver File
+  UART2 Generated Driver File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    uart1.c
+    uart2.c
 
   @Summary
-    This is the generated driver implementation file for the UART1 driver using MPLAB(c) Code Configurator
+    This is the generated driver implementation file for the UART2 driver using MPLAB(c) Code Configurator
 
   @Description
-    This header file provides implementations for driver APIs for UART1.
+    This header file provides implementations for driver APIs for UART2.
     Generation Information :
         Product Revision  :  MPLAB(c) Code Configurator - 3.16
         Device            :  PIC24EP128MC206
@@ -46,71 +46,61 @@
 /**
   Section: Included Files
 */
-#include "uart1.h"
+#include "uart2.h"
 
 /**
-  Section: UART1 APIs
+  Section: UART2 APIs
 */
 
-void UART1_Initialize(void)
+void UART2_Initialize(void)
 {
-    // Set the UART1 module to the options selected in the user interface.
+    // Set the UART2 module to the options selected in the user interface.
 
     // STSEL 1; IREN disabled; PDSEL 8N; UARTEN enabled; RTSMD disabled; USIDL disabled; WAKE disabled; ABAUD disabled; LPBACK disabled; BRGH enabled; URXINV disabled; UEN TX_RX; 
-    U1MODE = 0x8008;
+    U2MODE = 0x8008;
 
     // OERR NO_ERROR_cleared; URXISEL RX_ONE_CHAR; UTXBRK COMPLETED; UTXEN disabled; ADDEN disabled; UTXISEL0 TX_ONE_CHAR; UTXINV disabled; 
-    U1STA = 0x0000;
+    U2STA = 0x0000;
 
-    // BaudRate = 19200; Frequency = 12002569 Hz; BRG 155; 
-    U1BRG = 0x009B;
+    // BaudRate = 9600; Frequency = 12002569 Hz; BRG 312; 
+    U2BRG = 0x0138;
 
-    U1STAbits.UTXEN = 1;
+    U2STAbits.UTXEN = 1;
 }
 
 
-uint8_t UART1_Read(void)
+uint8_t UART2_Read(void)
 {
-    while(!(U1STAbits.URXDA == 1))
+    while(!(U2STAbits.URXDA == 1))
     {
         
     }
 
-    if ((U1STAbits.OERR == 1))
+    if ((U2STAbits.OERR == 1))
     {
-        U1STAbits.OERR = 0;
+        U2STAbits.OERR = 0;
     }
 
     
 
-    return U1RXREG;
+    return U2RXREG;
 }
 
-void UART1_Write(uint8_t txData)
+void UART2_Write(uint8_t txData)
 {
-    while(U1STAbits.UTXBF == 1)
+    while(U2STAbits.UTXBF == 1)
     {
         
     }
 
-    U1TXREG = txData;    // Write the data byte to the USART.
+    U2TXREG = txData;    // Write the data byte to the USART.
 }
 
-UART1_STATUS UART1_StatusGet (void)
+UART2_STATUS UART2_StatusGet (void)
 {
-    return U1STA;
+    return U2STA;
 }
 
-int __attribute__((__section__(".libc.write"))) write(int handle, void *buffer, unsigned int len) {
-    int i;
-    while(U1STAbits.TRMT == 0);  
-    for (i = len; i; --i)
-    {
-        while(U1STAbits.TRMT == 0);
-        U1TXREG = *(char*)buffer++;        
-    }
-    return(len);
-}
 
 /**
   End of File
