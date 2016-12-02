@@ -34,10 +34,10 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 #include <stdint.h>
 
-void UART1_readline(uint8_t *target, uint8_t bufsize);
-void UART2_readline(uint8_t *target, uint8_t bufsize);
-void UART1_writeLine(uint8_t *outString);
-void UART2_writeLine(uint8_t *outString);
+void UART1_readLine(char *target, uint8_t bufsize);
+void UART2_readLine(char *target, uint8_t bufsize);
+void UART1_writeLine(char *outString);
+void UART2_writeLine(char *outString);
 
 #endif	/* UART */
 

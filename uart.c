@@ -11,7 +11,7 @@
 #include "mcc_generated_files/mcc.h"
 
 
-void UART1_readline(uint8_t *target, uint8_t bufsize){
+void UART1_readLine(char *target, uint8_t bufsize){
     uint8_t pos1 = 0;
     
     while(1){
@@ -30,7 +30,7 @@ void UART1_readline(uint8_t *target, uint8_t bufsize){
     target[pos1] = '\0';
 }
 
-void UART2_readline(uint8_t *target, uint8_t bufsize){
+void UART2_readLine(char *target, uint8_t bufsize){
     uint8_t pos2 = 0;
     
     while(1){
@@ -49,13 +49,13 @@ void UART2_readline(uint8_t *target, uint8_t bufsize){
     target[pos2] = '\0';
 }
 
-void UART1_writeLine(uint8_t *outString){
+void UART1_writeLine(char *outString){
     while(*outString){
         UART1_Write(*outString++);
     }      
 }
 
-void UART2_writeLine(uint8_t *outString){
+void UART2_writeLine(char *outString){
     while(*outString){
         UART2_Write(*outString++);
     }      

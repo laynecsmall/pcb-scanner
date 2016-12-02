@@ -43,7 +43,8 @@
 #define setBit(reg, bit, val)    reg = val ? reg | (1 << bit) : reg & ~(1 << bit);
 #define getBit(a,b) ((a) & (1<<(b)))
 
-
+void blink_led(void);
+uint16_t read_adc(void);
 
 #endif	/* MAIN */
 
