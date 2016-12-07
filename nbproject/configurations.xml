@@ -12,10 +12,15 @@
         <itemPath>mcc_generated_files/uart1.h</itemPath>
         <itemPath>mcc_generated_files/pin_manager.h</itemPath>
         <itemPath>mcc_generated_files/traps.h</itemPath>
+        <itemPath>mcc_generated_files/uart2.h</itemPath>
+        <itemPath>mcc_generated_files/tmr1.h</itemPath>
         <itemPath>mcc_generated_files/spi2.h</itemPath>
+        <itemPath>mcc_generated_files/ext_int.h</itemPath>
       </logicalFolder>
       <itemPath>main.h</itemPath>
       <itemPath>mux.h</itemPath>
+      <itemPath>uart.h</itemPath>
+      <itemPath>xbee.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -32,10 +37,15 @@
         <itemPath>mcc_generated_files/mcc.c</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
         <itemPath>mcc_generated_files/pin_manager.c</itemPath>
+        <itemPath>mcc_generated_files/ext_int.c</itemPath>
+        <itemPath>mcc_generated_files/uart2.c</itemPath>
+        <itemPath>mcc_generated_files/tmr1.c</itemPath>
         <itemPath>mcc_generated_files/spi2.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>mux.c</itemPath>
+      <itemPath>uart.c</itemPath>
+      <itemPath>xbee.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -125,6 +135,25 @@
       <C30-AR>
         <property key="additional-options-chop-files" value="false"/>
       </C30-AR>
+      <C30-AS>
+        <property key="assembler-symbols" value=""/>
+        <property key="expand-macros" value="false"/>
+        <property key="extra-include-directories-for-assembler" value=""/>
+        <property key="extra-include-directories-for-preprocessor" value=""/>
+        <property key="false-conditionals" value="false"/>
+        <property key="keep-locals" value="false"/>
+        <property key="list-assembly" value="false"/>
+        <property key="list-section-info" value="false"/>
+        <property key="list-source" value="false"/>
+        <property key="list-symbols" value="false"/>
+        <property key="oXC16asm-extra-opts" value=""/>
+        <property key="oXC16asm-list-to-file" value="false"/>
+        <property key="omit-debug-dirs" value="false"/>
+        <property key="omit-forms" value="false"/>
+        <property key="preprocessor-macros" value=""/>
+        <property key="relax" value="false"/>
+        <property key="warning-level" value="emit-warnings"/>
+      </C30-AS>
       <C30-LD>
         <property key="additional-options-use-response-files" value="false"/>
         <property key="boot-eeprom" value="no_eeprom"/>
@@ -214,6 +243,7 @@
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>

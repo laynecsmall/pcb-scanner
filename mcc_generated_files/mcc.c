@@ -89,11 +89,13 @@
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    OSCILLATOR_Initialize();
     INTERRUPT_Initialize();
+    OSCILLATOR_Initialize();
     UART2_Initialize();
     SPI2_Initialize();
     UART1_Initialize();
+    EXT_INT_Initialize();
+    TMR1_Initialize();
     CORCON_ModeOperatingSet(CORCON_MODE_PORVALUES);
 }
 

@@ -21,7 +21,7 @@ void UART1_readLine(char *target, uint8_t bufsize){
         }
         else{
             target[pos1++] = UART1_Read();
-            if (target[pos1-1] == '\n'){
+            if (target[pos1-1] == '\n' || target[pos1-1] == '\r'){
                 break;
             }
         }

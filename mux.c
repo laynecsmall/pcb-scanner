@@ -16,7 +16,13 @@
 // should have enable_in_mux() and enable_out_mux() called before using.
 
 int i = 0;
-uint8_t test = 2;
+
+void MUX_initialize(void){
+    //iniitialize the multiplexers, ready for scan
+    enable_in_mux();
+    enable_out_mux();
+    select_mux_line(0,0);
+}
 
 void select_mux_line(uint8_t in_pin, uint8_t out_pin){
     /*
@@ -82,5 +88,3 @@ void enable_in_mux(void){
 void disable_in_mux(void){
     PORTGbits.RG6 = 1;
 }
-
-

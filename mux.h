@@ -40,6 +40,7 @@ void enable_out_mux(void);
 void disable_out_mux(void);
 void enable_in_mux(void);
 void disable_in_mux(void);
+void MUX_initialize(void);
 
 #endif	/* MUX */
 

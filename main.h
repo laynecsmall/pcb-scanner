@@ -35,13 +35,55 @@
 #include <stdio.h>
 #include <libpic30.h>
 #include <stdint.h>
+#include "mux.h"
 
 #define FCY 41856001UL
-#define BAUD 19200UL
-#define delay_us(x) __delay32(((x*FCY)/1000000UL)) // delays x us
-#define delay_ms(x) __delay32(((x*FCY)/1000UL))  // delays x ms
+#define BAUD 9600UL
+
+#define X_MAT_SIZE 14U
+#define Y_MAT_SIZE 14U
+
+#define delay_us(x) __delay32(x*(FCY/1000000UL)) // delays x us
+#define delay_ms(x) __delay32(x*(FCY/1000UL))  // delays x ms
+#define delay_s(x) __delay32(x*FCY)  // delays x ms
 #define setBit(reg, bit, val)    reg = val ? reg | (1 << bit) : reg & ~(1 << bit);
 #define getBit(a,b) ((a) & (1<<(b)))
+
+/*
+ * Flag map:
+ * =========================
+ * | Bit  | Flag
+ * |------|-----------------
+ * | 0    | UART_update
+ * | 1    | Timer
+ * | 2    | Mat scan
+ * | 3    |
+ * | 4    |
+ * | 5    |
+ * | 6    | 
+ * | 7    |
+ * =========================
+ */
+
+//define useful flags
+//uart
+#define setUartFlag() setBit(flags,0,1);
+#define clearUartFlag() setBit(flags,0,0);
+#define uartFlag getBit(flags,0)
+
+//timer
+#define setTimerFlag() setBit(flags,1,1);
+#define clearTimerFlag() setBit(flags,1,0);
+#define timerFlag getBit(flags,1)
+
+//Mat scan
+#define setMatScanFlag() setBit(flags,2,1);
+#define clearMatScanFlag() setBit(flags,2,0);
+#define matScanFlag getBit(flags,2)
+
+#define calculate_UXBRG(a) FCY/(4*a)-1
+#define LED_on() PORTBbits.RB9 = 1
+#define LED_off() PORTBbits.RB9 = 0
 
 void blink_led(void);
 uint16_t read_adc(void);
