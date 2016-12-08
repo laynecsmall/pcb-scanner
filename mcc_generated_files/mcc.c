@@ -103,14 +103,14 @@ void OSCILLATOR_Initialize(void)
 {
     // CF no clock failure; NOSC FRCPLL; CLKLOCK unlocked; OSWEN Switch is Complete; 
     __builtin_write_OSCCONL((uint8_t) (0x0100 & 0x00FF));
-    // FRCDIV FRC/1; PLLPRE 5; DOZE 1:8; PLLPOST 1:2; DOZEN disabled; ROI disabled; 
-    CLKDIV = 0x3003;
+    // FRCDIV FRC/1; PLLPRE 4; DOZE 1:8; PLLPOST 1:2; DOZEN disabled; ROI disabled; 
+    CLKDIV = 0x3002;
     // TUN Center frequency; 
     OSCTUN = 0x0000;
     // ROON disabled; ROSEL disabled; RODIV Base clock value; ROSSLP disabled; 
     REFOCON = 0x0000;
-    // PLLDIV 112; 
-    PLLFBD = 0x0070;
+    // PLLDIV 197; 
+    PLLFBD = 0x00C5;
     // RND disabled; SATB disabled; SATA disabled; ACCSAT disabled; 
 	CORCONbits.RND = 0;
 	CORCONbits.SATB = 0;

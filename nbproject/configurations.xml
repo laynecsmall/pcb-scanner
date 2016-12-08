@@ -21,6 +21,7 @@
       <itemPath>mux.h</itemPath>
       <itemPath>uart.h</itemPath>
       <itemPath>xbee.h</itemPath>
+      <itemPath>polifitgsl.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -46,6 +47,7 @@
       <itemPath>mux.c</itemPath>
       <itemPath>uart.c</itemPath>
       <itemPath>xbee.c</itemPath>
+      <itemPath>polifitgsl.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -56,10 +58,12 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
+    <Elem>../gsl</Elem>
+    <Elem>../../../../../../Program Files (x86)/GnuWin32/include/gsl</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
-    <conf name="default" type="2">
+    <conf name="default" type="3">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <targetDevice>PIC24EP128MC206</targetDevice>
@@ -73,6 +77,10 @@
       <compileType>
         <linkerTool>
           <linkerLibItems>
+            <linkerLibFileItem>../../../../../../Program Files (x86)/GnuWin32/lib/libgsl.a</linkerLibFileItem>
+            <linkerLibFileItem>../../../../../../Program Files (x86)/GnuWin32/lib/libgsl.dll.a</linkerLibFileItem>
+            <linkerLibFileItem>../../../../../../Program Files (x86)/GnuWin32/lib/libgslcblas.a</linkerLibFileItem>
+            <linkerLibFileItem>../../../../../../Program Files (x86)/GnuWin32/lib/libgslcblas.dll.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>
@@ -165,7 +173,8 @@
         <property key="enable-default-isr" value="true"/>
         <property key="enable-handles" value="true"/>
         <property key="enable-pack-data" value="true"/>
-        <property key="extra-lib-directories" value=""/>
+        <property key="extra-lib-directories"
+                  value="..\..\..\..\..\..\Program Files (x86)\GnuWin32\lib"/>
         <property key="fill-flash-options-addr" value=""/>
         <property key="fill-flash-options-const" value=""/>
         <property key="fill-flash-options-how" value="0"/>
@@ -176,8 +185,8 @@
         <property key="general-code-protect" value="no_code_protect"/>
         <property key="general-write-protect" value="no_write_protect"/>
         <property key="generate-cross-reference-file" value="false"/>
-        <property key="heap-size" value=""/>
-        <property key="input-libraries" value=""/>
+        <property key="heap-size" value="512"/>
+        <property key="input-libraries" value="gsl;gslcblas"/>
         <property key="linker-stack" value="true"/>
         <property key="linker-symbols" value=""/>
         <property key="map-file" value="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"/>
@@ -200,13 +209,14 @@
         <property key="warn-section-align" value="false"/>
       </C30-LD>
       <C30Global>
-        <property key="common-include-directories" value=""/>
+        <property key="common-include-directories"
+                  value="..\..\..\..\..\..\Program Files (x86)\GnuWin32\include"/>
         <property key="dual-boot-partition" value="0"/>
         <property key="fast-math" value="false"/>
         <property key="generic-16-bit" value="false"/>
         <property key="legacy-libc" value="true"/>
         <property key="oXC16glb-macros" value=""/>
-        <property key="output-file-format" value="elf"/>
+        <property key="output-file-format" value="coff"/>
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
@@ -243,7 +253,6 @@
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="false"/>

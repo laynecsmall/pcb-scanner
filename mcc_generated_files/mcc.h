@@ -57,7 +57,7 @@
 #include "ext_int.h"
 #include "tmr1.h"
 
-#define _XTAL_FREQ  24005139UL
+#define _XTAL_FREQ  48887653UL
 
 /**
   Section: Type defines

@@ -67,8 +67,8 @@ uint16_t SPI2_ExchangeBuffer(uint8_t *pTransmitData, uint16_t byteCount, uint8_t
 
 void SPI2_Initialize (void)
 {
-    // MSTEN Master; DISSDO enabled; PPRE 1:1; SPRE 2:1; MODE16 enabled; SMP Middle; DISSCK disabled; CKP Idle:High, Active:Low; CKE Active to Idle; 
-    SPI2CON1 = 0x0D7B;
+    // MSTEN Master; DISSDO enabled; PPRE 1:1; SPRE 1:1; MODE16 enabled; SMP Middle; DISSCK disabled; CKP Idle:High, Active:Low; CKE Active to Idle; 
+    SPI2CON1 = 0x0D7F;
     // SPIBEN enabled; FRMPOL disabled; FRMDLY disabled; 
     SPI2CON2 = 0x0001;
     // SISEL SPI_INT_SPIRBF; SPIROV disabled; SPIEN enabled; SPISIDL disabled; 

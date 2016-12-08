@@ -37,11 +37,12 @@
 #include <stdint.h>
 #include "mux.h"
 
-#define FCY 41856001UL
+#define FCY 92006400UL //x4
 #define BAUD 9600UL
 
 #define X_MAT_SIZE 14U
 #define Y_MAT_SIZE 14U
+#define MAX_SAMPLES 15U
 
 #define delay_us(x) __delay32(x*(FCY/1000000UL)) // delays x us
 #define delay_ms(x) __delay32(x*(FCY/1000UL))  // delays x ms

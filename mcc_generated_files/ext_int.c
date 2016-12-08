@@ -50,7 +50,7 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _INT1Interrupt(void)
     TMR1_SoftwareCounterClear(); //ensure counter is from zero
     clearTimerFlag(); //ensure timer flag has not yet started
 //    TMR1_Start();
-    LED_off();
+//    LED_off();
     
     //***User Area End->code: External Interrupt 1***
     EX_INT1_InterruptFlagClear();
@@ -65,7 +65,7 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _INT2Interrupt(void)
     setTimerFlag() //timer has updated, indicate to main loop to check tmr value
     //***User Area End->code: External Interrupt 2***
     EX_INT2_InterruptFlagClear();
-    LED_off();
+//    LED_off();
 }
 /**
   Interrupt Handler for EX_INT0 - INT1
