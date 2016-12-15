@@ -21,7 +21,8 @@
       <itemPath>mux.h</itemPath>
       <itemPath>uart.h</itemPath>
       <itemPath>xbee.h</itemPath>
-      <itemPath>polifitgsl.h</itemPath>
+      <itemPath>scanner_fit.h</itemPath>
+      <itemPath>mpfit.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -47,7 +48,8 @@
       <itemPath>mux.c</itemPath>
       <itemPath>uart.c</itemPath>
       <itemPath>xbee.c</itemPath>
-      <itemPath>polifitgsl.c</itemPath>
+      <itemPath>scanner_fit.c</itemPath>
+      <itemPath>mpfit.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -60,10 +62,12 @@
     <Elem>.</Elem>
     <Elem>../gsl</Elem>
     <Elem>../../../../../../Program Files (x86)/GnuWin32/include/gsl</Elem>
+    <Elem>../../../../../../Program Files (x86)/GnuWin32/lib</Elem>
+    <Elem>../mpfit.X</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
-    <conf name="default" type="3">
+    <conf name="default" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <targetDevice>PIC24EP128MC206</targetDevice>
@@ -77,10 +81,6 @@
       <compileType>
         <linkerTool>
           <linkerLibItems>
-            <linkerLibFileItem>../../../../../../Program Files (x86)/GnuWin32/lib/libgsl.a</linkerLibFileItem>
-            <linkerLibFileItem>../../../../../../Program Files (x86)/GnuWin32/lib/libgsl.dll.a</linkerLibFileItem>
-            <linkerLibFileItem>../../../../../../Program Files (x86)/GnuWin32/lib/libgslcblas.a</linkerLibFileItem>
-            <linkerLibFileItem>../../../../../../Program Files (x86)/GnuWin32/lib/libgslcblas.dll.a</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>
@@ -112,8 +112,8 @@
         <property key="enable-large-arrays" value="false"/>
         <property key="enable-omit-frame-pointer" value="false"/>
         <property key="enable-procedural-abstraction" value="false"/>
-        <property key="enable-short-double" value="false"/>
-        <property key="enable-symbols" value="true"/>
+        <property key="enable-short-double" value="true"/>
+        <property key="enable-symbols" value="false"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="extra-include-directories" value=""/>
         <property key="isolate-each-function" value="false"/>
@@ -173,8 +173,7 @@
         <property key="enable-default-isr" value="true"/>
         <property key="enable-handles" value="true"/>
         <property key="enable-pack-data" value="true"/>
-        <property key="extra-lib-directories"
-                  value="..\..\..\..\..\..\Program Files (x86)\GnuWin32\lib"/>
+        <property key="extra-lib-directories" value=""/>
         <property key="fill-flash-options-addr" value=""/>
         <property key="fill-flash-options-const" value=""/>
         <property key="fill-flash-options-how" value="0"/>
@@ -185,9 +184,9 @@
         <property key="general-code-protect" value="no_code_protect"/>
         <property key="general-write-protect" value="no_write_protect"/>
         <property key="generate-cross-reference-file" value="false"/>
-        <property key="heap-size" value="512"/>
-        <property key="input-libraries" value="gsl;gslcblas"/>
-        <property key="linker-stack" value="true"/>
+        <property key="heap-size" value=""/>
+        <property key="input-libraries" value="m"/>
+        <property key="linker-stack" value="false"/>
         <property key="linker-symbols" value=""/>
         <property key="map-file" value="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"/>
         <property key="oXC16ld-extra-opts" value=""/>
@@ -203,14 +202,13 @@
         <property key="secure-flash" value="no_flash"/>
         <property key="secure-ram" value="no_ram"/>
         <property key="secure-write-protect" value="no_write_protect"/>
-        <property key="stack-size" value="16"/>
+        <property key="stack-size" value="11278"/>
         <property key="symbol-stripping" value=""/>
         <property key="trace-symbols" value=""/>
         <property key="warn-section-align" value="false"/>
       </C30-LD>
       <C30Global>
-        <property key="common-include-directories"
-                  value="..\..\..\..\..\..\Program Files (x86)\GnuWin32\include"/>
+        <property key="common-include-directories" value=""/>
         <property key="dual-boot-partition" value="0"/>
         <property key="fast-math" value="false"/>
         <property key="generic-16-bit" value="false"/>
